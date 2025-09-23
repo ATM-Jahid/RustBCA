@@ -6,8 +6,6 @@ import os
 #This should allow the script to find materials and formulas from anywhere
 sys.path.append(os.path.dirname(__file__)+'/../scripts')
 sys.path.append('scripts')
-from materials import *
-from formulas import *
 import time
 from tomlkit import parse, dumps
 
@@ -56,6 +54,42 @@ It runs the input file with cargo run --release and reads the output files.
 '''
 run_sim = True
 mode = '1D'
+
+# For organizational purposes, species are commonly defined in dictionaries.
+# Additional examples can be found in scripts/materials.py, but values 
+# should be checked for correctness before use.
+hydrogen = {
+    'symbol': 'H',
+    'name': 'hydrogen',
+    'Z': 1.0,
+    'm': 1.008, # AMU
+    'Ec': 0.95, # eV
+    'Es': 1.5, # eV
+}
+
+titanium = {
+    'symbol': 'Ti',
+    'name': 'titanium',
+    'Z': 22.0,
+    'm': 47.867, # AMU
+    'Es': 4.84, # eV
+    'Ec': 3.5, # eV
+    'Eb': 0., # eV
+    'Ed': 19.0, # eV
+    'n': 5.67e28, # 1/m^3
+}
+
+boron = {
+    'symbol': 'B',
+    'name': 'boron',
+    'Z': 5.0,
+    'm': 10.811, # AMU
+    'n': 1.309E29, # 1/m^3
+    'Es': 5.77, # eV
+    'Eb': 0., # eV
+    'Ec': 5., # eV
+    'Ed': 25.0 # eV
+}
 
 # species definitions
 ion = hydrogen
