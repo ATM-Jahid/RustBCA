@@ -52,12 +52,19 @@ a TOML file using tomlkit.
 
 It runs the input file with cargo run --release and reads the output files.
 '''
+
 run_sim = True
 mode = '1D'
+incident_energy = 1000.0 # eV
+number_ions = 100000 # at least 10k are typically needed for decent results
+angle = 45.0 # degrees; measured from surface normal
 
-# For organizational purposes, species are commonly defined in dictionaries.
-# Additional examples can be found in scripts/materials.py, but values 
-# should be checked for correctness before use.
+'''
+For organizational purposes, species are commonly defined in dictionaries.
+Additional examples can be found in scripts/materials.py, but values 
+should be checked for correctness before use. Values are explained
+in the relevant sections below.
+'''
 hydrogen = {
     'symbol': 'H',
     'name': 'hydrogen',
@@ -102,14 +109,6 @@ layer_thicknesses = [100.0, 100.0, 1000.0] # A
 layer_1_densities = [boron["n"]/10**30, 0.0] # 1/A^3
 layer_2_densities = [n_i * 2, n_i]  # 1/A^3
 layer_3_densities = [0.0, titanium["n"]/10**30]  # 1/A^3
-
-# displacement energies
-target1["Ed"] = 25.0 # eV
-target2["Ed"] = 19.0 # eV
-
-incident_energy = 1000.0 # eV
-number_ions = 100000
-angle = 45.0 # degrees; measured from surface normal
 
 options = {
     'name': 'input_file',
